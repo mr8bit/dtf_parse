@@ -3,6 +3,7 @@ import os
 import pathlib
 import random
 import time
+from argparse import ArgumentParser
 
 import pandas as pd
 import requests
@@ -97,8 +98,19 @@ def get_comments(user_id, save_path="./comments"):
 
 
 if __name__ == '__main__':
+    parser = ArgumentParser()
+    parser.add_argument("-s", "--start", type=int, required=True)
+    parser.add_argument("-e", "--end", type=int, required=True)
+    parser.add_argument("-w", "--workers", type=int, default=32)
+    args = parser.parse_args()
+
+    print("Настройки парсинга")
+    print(f"Начальный индекс парсинга: {args.start}")
+    print(f"Конченый индекс парсинга: {args.end}")
+    print(f"Количество воркеров: {args.workers}")
+
     print("Начало парсинга...")
     p = pathlib.Path(f"./comments/")
     p.mkdir(parents=True, exist_ok=True)
-    process_map(get_comments, list(range(80500, 100500)), max_workers=32, chunksize=1)
+    process_map(get_comments, list(range(args.start, args.end)), max_workers=args.workers, chunksize=1)
     print("Парсинг окончен...")

@@ -1,9 +1,14 @@
 import pathlib
+from argparse import ArgumentParser
 
 import pandas as pd
 from tqdm import tqdm
 
 if __name__ == '__main__':
+    parser = ArgumentParser()
+    parser.add_argument("-s", "--start", type=int, required=True)
+    parser.add_argument("-e", "--end", type=int, required=True)
+    args = parser.parse_args()
 
     print("Начата комплементация..")
     p = pathlib.Path(f"./comments")
@@ -22,4 +27,5 @@ if __name__ == '__main__':
     print("Комплементация...")
     df = pd.concat(concat)
     print("Завершена!")
-    df.to_csv("./complimentation.csv")
+    df.to_csv(f"./complimentation_{args.start}_{args.end}.csv")
+
