@@ -10,6 +10,13 @@ if __name__ == '__main__':
     parser.add_argument("-e", "--end", type=int, required=True)
     args = parser.parse_args()
 
+    print("=" * 20)
+    print("Настройки комплементации..")
+    print(f"Начальный индекс парсинга: {args.start}")
+    print(f"Конченый индекс парсинга: {args.end}")
+    print(f"Количество воркеров: {args.workers}")
+    print("=" * 20)
+
     print("Начата комплементация..")
     p = pathlib.Path(f"./comments")
     comm_file = p.glob("*/*.csv")
@@ -28,4 +35,3 @@ if __name__ == '__main__':
     df = pd.concat(concat)
     print("Завершена!")
     df.to_csv(f"./complimentation_{args.start}_{args.end}.csv")
-

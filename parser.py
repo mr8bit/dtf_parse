@@ -103,11 +103,13 @@ if __name__ == '__main__':
     parser.add_argument("-e", "--end", type=int, required=True)
     parser.add_argument("-w", "--workers", type=int, default=32)
     args = parser.parse_args()
-
+    
+    print("=" * 20)
     print("Настройки парсинга")
     print(f"Начальный индекс парсинга: {args.start}")
     print(f"Конченый индекс парсинга: {args.end}")
     print(f"Количество воркеров: {args.workers}")
+    print("=" * 20)
 
     print("Начало парсинга...")
     p = pathlib.Path(f"./comments/")

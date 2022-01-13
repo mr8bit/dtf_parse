@@ -65,6 +65,13 @@ if __name__ == '__main__':
 
     process_map(transform_and_clear, list(range(args.start, args.end)), max_workers=args.workers, chunksize=1)
 
+    print("=" * 20)
+    print("Настройки трансформа")
+    print(f"Начальный индекс трансформа: {args.start}")
+    print(f"Конченый индекс трансформа: {args.end}")
+    print(f"Количество воркеров: {args.workers}")
+    print("=" * 20)
+
     print("Начата комплементация..")
     p = pathlib.Path(f"./comments")
     comm_file = p.glob("*/*.csv")
